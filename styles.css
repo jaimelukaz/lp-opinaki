@@ -23,6 +23,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 80px;
 }
 
 body {
@@ -93,8 +94,10 @@ a {
 
 /* Header */
 .header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
     background: rgba(5, 11, 31, 0.85);
     backdrop-filter: blur(12px);
@@ -141,9 +144,19 @@ a {
     background: transparent;
     border: none;
     color: var(--text-primary);
-    font-size: 28px;
     cursor: pointer;
-    padding: 4px;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.menu-toggle iconify-icon {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+    line-height: 1;
 }
 
 .nav-mobile {
@@ -162,14 +175,19 @@ a {
 /* Hero */
 .hero {
     position: relative;
-    padding: 100px 0 140px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     overflow: hidden;
+    padding: 80px 0;
 }
 
 .hero-inner {
     position: relative;
     max-width: 900px;
+    width: 100%;
 }
 
 .hero h1 {
@@ -205,43 +223,43 @@ a {
 }
 
 .bubble-top-right {
-    top: -20px;
+    top: -50%;
     right: 12%;
     width: 180px;
     animation-delay: 0s;
 }
 
 .bubble-top-left {
-    top: 30px;
+    top: -60%;
     left: 15%;
     width: 90px;
     animation-delay: 1.5s;
 }
 
 .bubble-mid-left {
-    top: 45%;
+    top: 50%;
     left: 5%;
     width: 130px;
     animation-delay: 0.8s;
 }
 
 .bubble-mid-right {
-    top: 50%;
+    top: 75%;
     right: 8%;
     width: 200px;
     animation-delay: 2s;
 }
 
 .bubble-bottom-left {
-    bottom: 10%;
+    bottom: -45%;
     left: 22%;
     width: 70px;
     animation-delay: 3s;
 }
 
 .bubble-bottom-right {
-    bottom: 5%;
-    right: 18%;
+    bottom: 40%;
+    right: 1%;
     width: 80px;
     animation-delay: 2.5s;
 }
@@ -278,6 +296,7 @@ section h2 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    padding: 0 1rem;
 }
 
 .feature-card {
@@ -482,7 +501,7 @@ section h2 {
     }
 
     .hero {
-        padding: 60px 0 80px;
+        padding: 60px 0;
     }
 
     .floating-bubble {
@@ -500,11 +519,32 @@ section h2 {
     .chat-section,
     .trends-section,
     .signup {
-        padding: 70px 0;
+        padding: 0 0 70px;
     }
 
     .features-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0;
+    }
+
+    .feature-card {
+        padding: 20px 16px;
+    }
+
+    .feature-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        margin-bottom: 14px;
+    }
+
+    .feature-card h3 {
+        font-size: 1rem;
+    }
+
+    .feature-card p {
+        font-size: 0.85rem;
     }
 
     .footer-inner {
