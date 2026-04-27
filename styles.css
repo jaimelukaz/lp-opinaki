@@ -509,10 +509,10 @@ section h2 {
     }
 
     .bubble-top-right { width: 100px; right: 4%; }
-    .bubble-mid-right { width: 110px; right: 2%; }
+    .bubble-mid-right { width: 110px; right: 10%; top: 108%; }
     .bubble-mid-left { width: 80px; left: 2%; }
     .bubble-top-left { width: 50px; }
-    .bubble-bottom-left { width: 50px; }
+    .bubble-bottom-left { width: 50px; bottom: -90%; }
     .bubble-bottom-right { width: 50px; }
 
     .features,
@@ -526,6 +526,11 @@ section h2 {
         grid-template-columns: repeat(2, 1fr);
         gap: 12px;
         padding: 0;
+    }
+
+    .world-map {
+        max-width: none;
+        width: 100%;
     }
 
     .feature-card {

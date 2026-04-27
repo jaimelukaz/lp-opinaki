@@ -28,10 +28,13 @@ const observer = new IntersectionObserver((entries) => {
 sections.forEach((section) => observer.observe(section));
 
 // Signup form
+const SHEETS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwVAjcSGEujE0C03WapdzhhKi7otuKW2VbwKb1ls7PFdNAE0hzPei2lPSCk6wzGT0fSPQ/exec';
+const REDIRECT_URL = 'https://opinaki.com';
+
 const form = document.getElementById('signupForm');
 const feedback = document.getElementById('formFeedback');
 
-form?.addEventListener('submit', (event) => {
+form?.addEventListener('submit', async (event) => {
     event.preventDefault();
     feedback.classList.remove('error');
 
@@ -50,6 +53,28 @@ form?.addEventListener('submit', (event) => {
         return;
     }
 
-    feedback.textContent = 'Tudo certo! Em breve você recebe seu convite.';
-    form.reset();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Enviando...';
+    feedback.textContent = '';
+
+    try {
+        await fetch(SHEETS_ENDPOINT, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify(data),
+        });
+
+        feedback.textContent = 'Tudo certo! Redirecionando...';
+        form.reset();
+        setTimeout(() => {
+            window.location.href = REDIRECT_URL;
+        }, 800);
+    } catch (error) {
+        feedback.textContent = 'Não foi possível enviar agora. Tente novamente.';
+        feedback.classList.add('error');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+    }
 });
